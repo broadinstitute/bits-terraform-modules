@@ -32,9 +32,10 @@ terraform {
 }
 
 module "lukas-test-project" {
-  source          = "./gcp-project"
+  source          = "git::https://github.com/broadinstitute/bits-terraform-modules.git//gcp-project?ref=main"
+  billing_account = "00A539-93294F-AC9B6F"
   billing_account = "0A1B2C-D3E4F5-A6B7C8"
-  costobject     = "1234567"
+  costobject      = "1234567"
   folder_id       = "123456789012"
   project_id      = "my-fancy-project"
   project_name    = "My Fancy Project"

@@ -52,7 +52,7 @@ resource "google_compute_disk" "my-instance-boot" {
 resource "google_compute_instance" "my-instance" {
   name          = "my-instance"
   machine_type  = var.machine_type
-  project       = google_compute_disk.boot.project
+  project       = google_compute_disk.my-instance-boot.project
   zone          = var.zone
 
   allow_stopping_for_update = true
@@ -63,7 +63,7 @@ resource "google_compute_instance" "my-instance" {
 
   boot_disk {
     auto_delete = false
-    source      = google_compute_disk.boot.id
+    source      = google_compute_disk.my-instance-boot.id
   }
 
   network_interface {
