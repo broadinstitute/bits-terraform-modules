@@ -24,8 +24,15 @@ variable "zone" {
 
 data "google_client_openid_userinfo" "me" {
 }
+data "google_storage_bucket_object_content" "internal_networks" {
+  name   = "internal_networks.json"
+  bucket = "broad-institute-networking"
+}
 
 output "my-email" {
   value = data.google_client_openid_userinfo.me.email
+}
+output "internal_networks" {
+  value = data.google_storage_bucket_object_content.internal_networks.content
 }
 
