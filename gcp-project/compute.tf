@@ -13,21 +13,7 @@ resource "google_compute_firewall" "my-network-allow-ssh-broad" {
     ports    = ["22"]
   }
 
-  source_ranges = [
-    "69.173.112.0/21",
-    "69.173.120.0/22",
-    "69.173.126.0/24",
-    "69.173.127.0/25",
-    "69.173.127.128/26",
-    "69.173.127.192/27",
-    "69.173.127.224/30",
-    "69.173.127.228/32",
-    "69.173.127.230/31",
-    "69.173.127.232/29",
-    "69.173.127.240/28",
-    "69.173.64.0/19",
-    "69.173.96.0/20",
-  ]
+  source_ranges = jsondecode(data.google_storage_bucket_object_content.internal_networks.content)
 
   target_tags = [
     "ssh-broad"
